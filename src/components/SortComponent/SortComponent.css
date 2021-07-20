@@ -1,0 +1,11 @@
+.sortComponentContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.sortComponentContainer__selectSort{
+    display: flex;
+    height: 46px;
+    align-items: center;
+}

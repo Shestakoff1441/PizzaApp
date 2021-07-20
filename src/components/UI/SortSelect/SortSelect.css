@@ -1,0 +1,29 @@
+.sortSelect{
+    position: relative;
+}
+.sortSelect__visibleBlock{
+    display: flex;
+}
+.sortSelect__visibleBlock_currentSort{
+    color: #FE5F1E;
+    border-bottom: 1px dashed #FE5F1E;
+}
+.sortSelect__visibleBlock_sortBy{
+    margin: 0 5px;
+    min-width: 132px;
+    font-weight: bold;
+}
+.sortSelect__hiddenBlock{
+    right: 0;
+    position: absolute;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+}
+.sortSelect__hiddenBlock_element{
+    padding: 10px;
+}
+
+.openedSelect {
+    transform: rotate(180deg);
+}

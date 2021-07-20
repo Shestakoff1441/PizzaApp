@@ -1,0 +1,21 @@
+.customButton{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    height: 46px;
+    background: #282828;
+    border-radius: 30px;
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.015em;
+    color: #FFFFFF;
+}
+.customButtonImg{
+    margin-right: 12px;
+}

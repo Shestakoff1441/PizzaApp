@@ -1,0 +1,17 @@
+.pizzaPrice__addButton {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 132px;
+    height: 40px;
+    color: #EB5A1E;
+    font-weight: bold;
+    background: #FFFFFF;
+    border: 1px solid #EB5A1E;
+    box-sizing: border-box;
+    border-radius: 30px;
+    }
+    .pizzaPrice__title{
+        margin: 0 7px;
+    }

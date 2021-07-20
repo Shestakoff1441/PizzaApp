@@ -1,0 +1,31 @@
+.cartpage__container{
+    text-align: center;
+    margin-top: 165px;
+}
+.cartpage__container__title{
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: 0.01em;
+    color: #000000;
+}
+
+.cartpage__container__subTitle{
+    margin-bottom: 47px;
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 145.4%;
+    /* or 26px */
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #777777;
+}
+.cartPage__container__backBtnBlock{
+    display: flex;
+    margin-top: 75px;
+    justify-content: center;
+}

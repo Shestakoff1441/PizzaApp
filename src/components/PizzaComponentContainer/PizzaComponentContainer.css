@@ -1,0 +1,16 @@
+.pizzaComponentContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.pizzaComponentContainer__visiblePizza{
+    display: flex;
+    margin: 32px 0;
+    width: 100%;
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: 0.01em;
+    color: #000000;
+}

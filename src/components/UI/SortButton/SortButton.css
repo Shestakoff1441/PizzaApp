@@ -1,0 +1,17 @@
+.sortButton{
+    margin: 10px 10px 0 0;
+    width: 132.63px;
+    height: 46px;
+    cursor: pointer;
+    background: #F9F9F9;
+    border-radius: 30px;
+    border: none;
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.015em;
+    color: #2C2C2C;
+}
