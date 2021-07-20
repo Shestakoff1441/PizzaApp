@@ -1,8 +1,9 @@
 .cartLineComponent__container{
     display: flex;
     padding: 30px 0;
-    border-top: 1px solid #F4F4F4;;
+    border-top: 1px solid #F4F4F4;
 }
+
 
 .cartLineComponent__activeBlock{
     display: flex;
@@ -22,5 +23,16 @@
 }
 .cartLineComponent__deleteIcon{
     cursor: pointer;
+}
+
+@media screen and (max-width:770px) {
+    .cartLineComponent__container{
+        display: block;
+    }
+    .cartLineComponent__activeBlock{
+        display: block;
+        text-align: center;
+        width: 100%;
+    }    
 }
 

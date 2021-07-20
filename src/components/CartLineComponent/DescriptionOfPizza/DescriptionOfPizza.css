@@ -1,12 +1,13 @@
-.imgAndTitle__container{
+.descriptionOfPizza__container{
     display: flex;
     width: 50%;
 }
-.imgAndTitle__image{
+
+.descriptionOfPizza__image{
     width: 80px;
     height: 80px;
 }
-.imgAndTitle__title{
+.descriptionOfPizza__title{
     font-family: Proxima Nova;
     font-style: normal;
     font-weight: bold;
@@ -15,11 +16,11 @@
     letter-spacing: 0.01em;
     color: #000000;
 }
-.imgAndTitle__titleBlock{
+.descriptionOfPizza__titleBlock{
     margin-left: 15px;
 }
 
-.imgAndTitle__subTitle{
+.descriptionOfPizza__subTitle{
     font-family: Proxima Nova;
     font-style: normal;
     font-weight: normal;
@@ -27,4 +28,15 @@
     line-height: 22px;
     letter-spacing: 0.01em;
     color: #8D8D8D;
+}
+@media screen and (max-width:770px) {
+    .descriptionOfPizza__container{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .descriptionOfPizza__image{
+        width: 180px;
+        height: 180px;
+    }    
 }

@@ -23,3 +23,8 @@
     opacity: .5;
 }
 
+@media screen and (max-width:770px) {
+    .quantityOfPizza__container{
+        justify-content: center;
+    }    
+}

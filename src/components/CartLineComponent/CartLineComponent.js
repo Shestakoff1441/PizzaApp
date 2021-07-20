@@ -1,5 +1,5 @@
 import React from 'react';
-import ImgAndTitle from './ImgAndTitle/ImgAndTitle';
+import DescriptionOfPizza from './DescriptionOfPizza/DescriptionOfPizza';
 import QuantityOfPizza from './QuantityOfPizza/QuantityOfPizza';
 import DeleteIcon from '../../images/DeleteIcon.svg';
 
@@ -9,7 +9,7 @@ const CartLineComponent = props => {
     const { pizza, incrOrDecrPizzAmount, value } = props;
     return (
         <div className='cartLineComponent__container'>
-            <ImgAndTitle {...pizza} />
+            <DescriptionOfPizza {...pizza} />
             <div className='cartLineComponent__activeBlock'>
                 <QuantityOfPizza value={value} {...pizza} incrOrDecrPizzAmount={incrOrDecrPizzAmount}/>
                 <div className='cartLineComponent__totalPrice'>

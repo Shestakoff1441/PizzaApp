@@ -91,7 +91,13 @@ const PizzaComponent = () => {
 
     return (
         <div className='pizzaComponentContainer'>
-            <SortComponent sortHandler={sortedData} currentPizzaType={currentPizzaType} sortButtons={sortButtons} filteredData={filteredData} setCurrentPizzaType={setCurrentPizzaType} />
+            <SortComponent
+                sortHandler={sortedData}
+                currentPizzaType={currentPizzaType}
+                sortButtons={sortButtons}
+                filteredData={filteredData}
+                setCurrentPizzaType={setCurrentPizzaType}
+            />
             <div className='pizzaComponentContainer__visiblePizza'>
                 {currentPizzaType} пиццы
             </div>
