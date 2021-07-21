@@ -33,13 +33,7 @@ const deleteSpecificPizza = (state, action) => {
 }
 
 const incrOrDecrPizzAmount = (state, action) => {
-  const clonedShoppingCart = { ...state.shoppingCart };
-  if (action.payload.type === 'increase') {
-    clonedShoppingCart[action.payload.key].amount++;
-  } else if (action.payload.type === 'decrease') {
-    clonedShoppingCart[action.payload.key].amount--;
-  }
-
+  const clonedShoppingCart = { ...state.shoppingCart, ...action.payload };
   return stateUpdater(state, {
     shoppingCart: clonedShoppingCart
   })

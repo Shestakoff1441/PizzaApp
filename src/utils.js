@@ -9,3 +9,11 @@ export const getPriceAndAmount = obj =>{
         return sum;
     }, {});
 }
+
+export const getLocalStorageData = () => {
+    let storeObject = {};
+    Object.keys(localStorage).forEach(key =>  storeObject[key] = JSON.parse(localStorage.getItem(key)));
+    return storeObject;
+}
+
+export const setLocalStorageData = (key, value) => localStorage.setItem(key, JSON.stringify(value));

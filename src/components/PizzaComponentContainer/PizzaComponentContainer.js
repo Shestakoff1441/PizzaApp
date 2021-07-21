@@ -91,25 +91,32 @@ const PizzaComponent = () => {
 
     return (
         <div className='pizzaComponentContainer'>
-            <SortComponent
-                sortHandler={sortedData}
-                currentPizzaType={currentPizzaType}
-                sortButtons={sortButtons}
-                filteredData={filteredData}
-                setCurrentPizzaType={setCurrentPizzaType}
-            />
-            <div className='pizzaComponentContainer__visiblePizza'>
-                {currentPizzaType} пиццы
-            </div>
-            {pizzaContentData.map(pizza => (
-                <Pizza
-                    key={pizza.title}
-                    image={pizza.image}
-                    title={pizza.title}
-                    typeAndSize={pizza.typeAndSize}
-                    price={pizza.price}
+            <div className='pizzaComponentContainer__content'>
+                <SortComponent
+                    sortHandler={sortedData}
+                    currentPizzaType={currentPizzaType}
+                    sortButtons={sortButtons}
+                    filteredData={filteredData}
+                    setCurrentPizzaType={setCurrentPizzaType}
                 />
-            ))}
+                <div className='pizzaComponentContainer__filteredPizzaContent'>
+                    <div className='pizzaComponentContainer__visiblePizza'>
+                        {currentPizzaType} пиццы
+                    </div>
+                    <div className='pizzaComponentContainer__pizzaContent'>
+                        {pizzaContentData.map(pizza => (
+                            <Pizza
+                                key={pizza.title}
+                                image={pizza.image}
+                                title={pizza.title}
+                                typeAndSize={pizza.typeAndSize}
+                                price={pizza.price}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PizzaParams from '../PizzaParams/PizzaParams';
 import PizzaPrice from '../PizzaPrice/PizzaPrice';
 import { setShoppingCart } from '../../redux/shoppingCart/actions';
+import { setLocalStorageData } from '../../utils';
 
 import './Pizza.css';
 
@@ -24,21 +25,38 @@ const Pizza = props => {
         })
     };
     const addToStore = data => {
-        if (`${data.title}  ${data.type}  ${data.size}` in props.shoppingCart.shoppingCart) {
+        const storeKey = `${data.title} ${data.type} ${data.size}`;
+        if (storeKey in props.shoppingCart.shoppingCart) {
             props.setShoppingCart({
                 ...props.shoppingCart.shoppingCart,
-                [`${data.title}  ${data.type}  ${data.size}`]: {
+                [storeKey]: {
                     ...data,
-                    amount: props.shoppingCart.shoppingCart[`${data.title}  ${data.type}  ${data.size}`].amount + 1
+                    amount: props.shoppingCart.shoppingCart[storeKey].amount + 1
                 }
+            });
+            // localStorage[storeKey] = JSON.stringify({
+            //     ...data,
+            //     amount: props.shoppingCart.shoppingCart[storeKey].amount + 1
+            // })
+            setLocalStorageData(storeKey, {
+                ...data,
+                amount: props.shoppingCart.shoppingCart[storeKey].amount + 1
             })
         } else {
             props.setShoppingCart({
                 ...props.shoppingCart.shoppingCart,
-                [`${data.title}  ${data.type}  ${data.size}`]: {
+                [storeKey]: {
                     ...data,
                     amount: 1
                 }
+            });
+            // localStorage[storeKey] = JSON.stringify({
+            //     ...data,
+            //     amount: 1
+            // })
+            setLocalStorageData(storeKey, {
+                ...data,
+                amount: 1
             })
         }
     }

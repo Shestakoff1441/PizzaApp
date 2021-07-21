@@ -1,5 +1,6 @@
 .pizzaPrice__container{
     display: flex;
+    width: 300px;
     margin-top: 17px;
     justify-content: space-between;
     align-items: center;
@@ -7,15 +8,11 @@
 .pizzaPrice__price{
     width: 89px;
     height: 27px;
-
     font-family: Proxima Nova;
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
     line-height: 27px;
-    /* identical to box height */
-
     letter-spacing: 0.015em;
-
     color: #000000;
 }
