@@ -9,20 +9,20 @@ const initialState = {
   shoppingCart: {},
 };
 
-const setShoppingCart = (state, action) => {
+const setShoppingCart = (state: any, action: any) => {
   const clonedShoppingCart = { ...state.shoppingCart, ...action.payload };
   return stateUpdater(state, {
     shoppingCart: clonedShoppingCart
   })
 }
 
-const cleanShoppingCart = (state) => {
+const cleanShoppingCart = (state: any) => {
   return stateUpdater(state, {
     shoppingCart: {}
   })
 }
 
-const deleteSpecificPizza = (state, action) => {
+const deleteSpecificPizza = (state: any, action: any) => {
   const clonedShoppingCart = { ...state.shoppingCart };
   if (action.payload in clonedShoppingCart) {
     delete clonedShoppingCart[action.payload]
@@ -32,14 +32,14 @@ const deleteSpecificPizza = (state, action) => {
   })
 }
 
-const incrOrDecrPizzAmount = (state, action) => {
+const incrOrDecrPizzAmount = (state: any, action: any) => {
   const clonedShoppingCart = { ...state.shoppingCart, ...action.payload };
   return stateUpdater(state, {
     shoppingCart: clonedShoppingCart
   })
 }
 
-export const shoppingReducer = (state = initialState, action) => {
+export const shoppingReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_SHOPPING_CART:
       return setShoppingCart(state, action);

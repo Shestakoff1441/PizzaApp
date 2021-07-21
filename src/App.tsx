@@ -11,10 +11,12 @@ import {
   Route,
 } from "react-router-dom";
 import { useEffect } from 'react';
-
-const App = (props) => {
+ type Props = {
+  setShoppingCart: Function
+ }
+const App = ({setShoppingCart}: Props) => {
   useEffect(() =>{
-    props.setShoppingCart(getLocalStorageData());
+    setShoppingCart(getLocalStorageData());
   }, [])
   // localStorage.clear();
   return (
@@ -40,10 +42,10 @@ const App = (props) => {
   );
 }
 
-const mapStateToProps = state => ({
-  shoppingCart: state.shoppingReducer
-});
-const mapDispatchToProps = dispatch => ({
-  setShoppingCart: (data) => dispatch(setShoppingCart(data))
+// const mapStateToProps = state => ({
+//   shoppingCart: state.shoppingReducer
+// });
+const mapDispatchToProps = (dispatch: Function) => ({
+  setShoppingCart: (data: any) => dispatch(setShoppingCart(data))
 })
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

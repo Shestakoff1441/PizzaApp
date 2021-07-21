@@ -5,28 +5,28 @@ import {
     INCR_OR_DECR_COUNT
 } from '../actionTypes';
 
-export const setShoppingCart = payload => {
+export const setShoppingCart = (payload: any) => {
     return {
         type: SET_SHOPPING_CART,
         payload
     }
 }
 
-export const cleanShoppingCart = payload => {
+export const cleanShoppingCart = (payload: any) => {
     return {
         type: CLEAN_SHOPPING_CART,
         payload
     }
 }
 
-export const deleteSpecificPizza = payload => {
+export const deleteSpecificPizza = (payload: any) => {
     return {
         type: DELETE_PIZZA,
         payload
     }
 }
 
-export const incrOrDecrPizzAmount = payload => {
+export const incrOrDecrPizzAmount = (payload: any) => {
     return {
         type: INCR_OR_DECR_COUNT,
         payload

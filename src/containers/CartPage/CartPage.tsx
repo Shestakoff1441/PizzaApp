@@ -8,36 +8,43 @@ import { incrOrDecrPizzAmount } from '../../redux/shoppingCart/actions';
 import { setLocalStorageData } from '../../utils';
 import './CartPage.css';
 
-const CartPage = props => {
-    const incrOrDecrPizz = payload => {
-        const clonedShoppingCart = { ...props.shoppingCart.shoppingCart };
+
+type Props = {
+    shoppingCart: any,
+    incrOrDecrPizzAmount: Function,
+    cleanShoppingCart: Function,
+    deleteSpecificPizza: Function
+}
+const CartPage = ({ shoppingCart, incrOrDecrPizzAmount, cleanShoppingCart, deleteSpecificPizza }: Props) => {
+    const incrOrDecrPizz = (payload: any) => {
+        const clonedShoppingCart = { ...shoppingCart.shoppingCart };
         if (payload.type === 'increase') {
             clonedShoppingCart[payload.key].amount++;
             setLocalStorageData(payload.key, clonedShoppingCart[payload.key]);
-            props.incrOrDecrPizzAmount({[payload.key]: clonedShoppingCart[payload.key]});
+            incrOrDecrPizzAmount({ [payload.key]: clonedShoppingCart[payload.key] });
         }
         else if (payload.type === 'decrease') {
             clonedShoppingCart[payload.key].amount--;
             setLocalStorageData(payload.key, clonedShoppingCart[payload.key]);
-            props.incrOrDecrPizzAmount({[payload.key]: clonedShoppingCart[payload.key]});
+            incrOrDecrPizzAmount({ [payload.key]: clonedShoppingCart[payload.key] });
         }
     }
 
     const clearStorage = () => {
-        props.cleanShoppingCart();
+        cleanShoppingCart();
         localStorage.clear();
     }
 
-    const removeElement = key => {
-        props.deleteSpecificPizza(key);
+    const removeElement = (key: string) => {
+        deleteSpecificPizza(key);
         localStorage.removeItem(key)
     }
 
     return (
-        !Object.keys(props.shoppingCart.shoppingCart).length ?
+        !Object.keys(shoppingCart.shoppingCart).length ?
             <EmptyCart /> :
-            <ShoppingCart 
-                shoppingCart={props.shoppingCart.shoppingCart} 
+            <ShoppingCart
+                shoppingCart={shoppingCart.shoppingCart}
                 cleanShoppingCart={clearStorage}
                 deleteSpecificPizza={removeElement}
                 incrOrDecrPizzAmount={incrOrDecrPizz}
@@ -45,13 +52,13 @@ const CartPage = props => {
     )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     shoppingCart: state.shoppingReducer
 });
 
-const mapDispatchToProps = dispatch => ({
-    cleanShoppingCart: (data) => dispatch(cleanShoppingCart(data)),
-    deleteSpecificPizza: (data) => dispatch(deleteSpecificPizza(data)),
-    incrOrDecrPizzAmount: (data) => dispatch(incrOrDecrPizzAmount(data)),
+const mapDispatchToProps = (dispatch: Function) => ({
+    cleanShoppingCart: (data: any) => dispatch(cleanShoppingCart(data)),
+    deleteSpecificPizza: (data: any) => dispatch(deleteSpecificPizza(data)),
+    incrOrDecrPizzAmount: (data: any) => dispatch(incrOrDecrPizzAmount(data)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

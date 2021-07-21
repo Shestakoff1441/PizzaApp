@@ -2,8 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 import './PizzaParams.css';
 
-const PizzaParams = props => {
-    const { typeAndSize, setPizzaParams, currentPizzaData } = props;
+
+type Props = {
+    typeAndSize: any,
+    setPizzaParams: Function,
+    currentPizzaData: any
+}
+const PizzaParams = ({ typeAndSize, setPizzaParams, currentPizzaData }: Props) => {
     return (
         <div className='pizzaParams__container'>
             <div className='pizzaParams__typeBlock'>

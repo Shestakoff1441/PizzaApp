@@ -1,9 +1,12 @@
 import React from 'react';
 import './Wrapper.css';
 
-const Wrapper = props => (
+type Props = {
+    children: JSX.Element
+}
+const Wrapper = ({ children }: Props) => (
     <div className='content-container'>
-        {props.children}
+        {children}
     </div>
 );
 

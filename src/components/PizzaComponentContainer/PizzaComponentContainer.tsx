@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Pizza from '../Pizza/Pizza';
-import SortComponent from '../../components/SortComponent/SortComponent';
+import SortComponent from '../SortComponent/SortComponent';
 import CheeseBurger from '../../images/CheeseBurger.svg';
 import Cheese from '../../images/Cheese.svg';
 import CheeseChicken from '../../images/CheeseChicken.svg';
@@ -65,9 +65,9 @@ const PizzaComponent = () => {
     const [pizzaContentData, setPizzaContentData] = useState(pizzaData);
     const [currentPizzaType, setCurrentPizzaType] = useState(sortButtons[0][0]);
 
-    const sortedData = (type) => {
+    const sortedData = (type: string  ) => {
         const clonedData = [...pizzaContentData];
-        const sortedItems = clonedData.sort((a, b) => {
+        const sortedItems = clonedData.sort((a: any, b: any) => {
             if (a[type] < b[type]) {
                 return -1;
             }
@@ -79,7 +79,7 @@ const PizzaComponent = () => {
         setPizzaContentData(sortedItems);
     };
 
-    const filteredData = (type) => {
+    const filteredData = (type: any) => {
         const clonedData = [...pizzaData];
         if (!type) {
             setPizzaContentData(clonedData);

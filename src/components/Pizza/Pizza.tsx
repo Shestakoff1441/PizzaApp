@@ -7,8 +7,15 @@ import { setLocalStorageData } from '../../utils';
 
 import './Pizza.css';
 
-const Pizza = props => {
-    const { image, title, typeAndSize, price } = props;
+type Props = {
+    image: string,
+    title: string,
+    typeAndSize: any,
+    price: Number,
+    setShoppingCart: Function
+    shoppingCart: any
+}
+const Pizza = ({ image, title, typeAndSize, price, shoppingCart, setShoppingCart }: Props) => {
     const [currentPizzaData, setCurrentPizzaData] = useState({
         image: image,
         title: title,
@@ -18,42 +25,34 @@ const Pizza = props => {
         amount: 0
     });
 
-    const setPizzaParamsHandler = (param, value) => {
+    const setPizzaParamsHandler = (param: any, value: any) => {
         setCurrentPizzaData({
             ...currentPizzaData,
             [param]: value
         })
     };
-    const addToStore = data => {
+    const addToStore = (data: any) => {
         const storeKey = `${data.title} ${data.type} ${data.size}`;
-        if (storeKey in props.shoppingCart.shoppingCart) {
-            props.setShoppingCart({
-                ...props.shoppingCart.shoppingCart,
+        if (storeKey in shoppingCart.shoppingCart) {
+            setShoppingCart({
+                ...shoppingCart.shoppingCart,
                 [storeKey]: {
                     ...data,
-                    amount: props.shoppingCart.shoppingCart[storeKey].amount + 1
+                    amount: shoppingCart.shoppingCart[storeKey].amount + 1
                 }
             });
-            // localStorage[storeKey] = JSON.stringify({
-            //     ...data,
-            //     amount: props.shoppingCart.shoppingCart[storeKey].amount + 1
-            // })
             setLocalStorageData(storeKey, {
                 ...data,
-                amount: props.shoppingCart.shoppingCart[storeKey].amount + 1
+                amount: shoppingCart.shoppingCart[storeKey].amount + 1
             })
         } else {
-            props.setShoppingCart({
-                ...props.shoppingCart.shoppingCart,
+            setShoppingCart({
+                ...shoppingCart.shoppingCart,
                 [storeKey]: {
                     ...data,
                     amount: 1
                 }
             });
-            // localStorage[storeKey] = JSON.stringify({
-            //     ...data,
-            //     amount: 1
-            // })
             setLocalStorageData(storeKey, {
                 ...data,
                 amount: 1
@@ -74,11 +73,11 @@ const Pizza = props => {
     )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     shoppingCart: state.shoppingReducer
 });
 
-const mapDispatchToProps = dispatch => ({
-    setShoppingCart: (data) => dispatch(setShoppingCart(data))
+const mapDispatchToProps = (dispatch: Function) => ({
+    setShoppingCart: (data: any) => dispatch(setShoppingCart(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Pizza);

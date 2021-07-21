@@ -4,8 +4,7 @@ import LeftArrow from '../../images/LeftArrow.svg';
 
 import './ShoppingCartBottom.css';
 
-const ShoppingCartBottom = props => {
-    const { sumOfElements } = props;
+const ShoppingCartBottom = ({sumOfElements} : any) => {
     return (
         <div className='shoppingCartBottom__container'>
             <div className='shoppingCartBottom__amountBlock'>

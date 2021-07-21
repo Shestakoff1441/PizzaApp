@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import AddButton from '../UI/AddButton/AddButton';
 
 import './PizzaPrice.css';
 
-const PizzaPrice = props => {
-    const { price, addPizzaHandler } = props;
+
+type Props = {
+    price: Number,
+    addPizzaHandler: MouseEventHandler
+}
+const PizzaPrice = ({ price, addPizzaHandler }: Props) => {
     return (
         <div className='pizzaPrice__container'>
             <div className='pizzaPrice__price'>от {price} ₽</div>

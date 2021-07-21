@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import UpArrow from '../../../images/UpArrow.svg';
 
 import './SortSelect.css';
-const sortSelectItems = [ ['popular', 'популярности'], ['price', 'по цене'], ['title', 'по алфавиту'] ];
+const sortSelectItems = [['popular', 'популярности'], ['price', 'по цене'], ['title', 'по алфавиту']];
 
-const SortSelect = props => {
+type Props = {
+    sortHandler: Function
+}
+
+const SortSelect = ({ sortHandler }: Props) => {
     const [sortType, setSortType] = useState(sortSelectItems[0][1]);
     const [isVisibleMenu, setIsVisibleMenu] = useState(false);
 
     const changeVisiblerHandler = () => setIsVisibleMenu(!isVisibleMenu);
-    const changeSortTypeHandler = (el) => setSortType(el);
+    const changeSortTypeHandler = (el: string) => setSortType(el);
     return (
         <div className='sortSelect' onClick={changeVisiblerHandler}>
             <div className='sortSelect__visibleBlock'>
@@ -22,7 +26,7 @@ const SortSelect = props => {
                     {sortSelectItems.map(el => (
                         <div className='sortSelect__hiddenBlock_element' key={el[0]} onClick={() => {
                             changeSortTypeHandler(el[1])
-                            props.sortHandler(el[0])
+                            sortHandler(el[0])
                         }}>
                             {el[1]}
                         </div>))}

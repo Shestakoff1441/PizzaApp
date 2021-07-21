@@ -4,7 +4,7 @@ import TrashBin from '../../images/TrashBin.svg';
 
 import './ShoppingCartTop.css';
 
-const ShoppingCartTop = props => {
+const ShoppingCartTop = ({ cleanShoppingCart }: any) => {
     return (
         <div className='shoppingCart__topOfCart'>
             <div className='shoppingCart__leftOfCart'>
@@ -13,7 +13,7 @@ const ShoppingCartTop = props => {
             </div>
             <div className='shoppingCart__rightOfCart'>
                 <img src={TrashBin} alt='' />
-                <span className='shoppingCart__cleanUpCart' onClick={() => props.cleanShoppingCart({})}>Очистить корзину</span>
+                <span className='shoppingCart__cleanUpCart' onClick={() => cleanShoppingCart({})}>Очистить корзину</span>
             </div>
         </div>
     )

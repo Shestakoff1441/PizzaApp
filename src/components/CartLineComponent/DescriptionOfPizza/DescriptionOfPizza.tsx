@@ -2,15 +2,21 @@ import React from 'react';
 
 import './DescriptionOfPizza.css';
 
-const DescriptionOfPizza = props => (
+type Props = {
+    image: string,
+    title: String,
+    type: String,
+    size: Number
+}
+const DescriptionOfPizza = ({ image, title, size, type }: Props) => (
     <div className='descriptionOfPizza__container'>
-        <img className='descriptionOfPizza__image' src={props.image} alt='' />
+        <img className='descriptionOfPizza__image' src={image} alt='' />
         <div className='descriptionOfPizza__titleBlock'>
             <div className='descriptionOfPizza__title'>
-                {props.title}
+                {title}
             </div>
             <div className='descriptionOfPizza__subTitle'>
-                {props.type} тесто, {props.size} см.
+                {type} тесто, {size} см.
             </div>
         </div>
     </div>

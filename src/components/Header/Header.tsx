@@ -6,8 +6,13 @@ import { Link } from 'react-router-dom';
 import { getPriceAndAmount } from '../../utils';
 import './Header.css';
 
-const Header = props => {
-    let sumOfElements = getPriceAndAmount(props.shoppingCart.shoppingCart);
+type Props = {
+    shoppingCart: any
+}
+
+
+const Header = ({ shoppingCart }: Props) => {
+    let sumOfElements = getPriceAndAmount(shoppingCart.shoppingCart);
     return (
         <div className='headerContainer'>
             <div className='headerContainer__logoAndTitle'>
@@ -32,7 +37,7 @@ const Header = props => {
     )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     shoppingCart: state.shoppingReducer
 });
 export default connect(mapStateToProps)(Header);

@@ -6,19 +6,30 @@ import { getPriceAndAmount } from '../../utils';
 
 import './ShoppingCart.css';
 
-const ShoppingCart = props => {
-    let sumOfElements = getPriceAndAmount(props.shoppingCart);
+type Props = {
+    shoppingCart: any,
+    cleanShoppingCart: Function,
+    deleteSpecificPizza: Function,
+    incrOrDecrPizzAmount: Function
+}
+const ShoppingCart = ({ 
+    shoppingCart, 
+    cleanShoppingCart, 
+    deleteSpecificPizza, 
+    incrOrDecrPizzAmount 
+}: Props) => {
+    let sumOfElements = getPriceAndAmount(shoppingCart);
     return (
         <div className='shoppingCart__container'>
-            <ShoppingCartTop cleanShoppingCart={props.cleanShoppingCart}/>
+            <ShoppingCartTop cleanShoppingCart={cleanShoppingCart} />
             {
-                Object.keys(props.shoppingCart).map(pizza => (
+                Object.keys(shoppingCart).map(pizza => (
                     <CartLineComponent
                         key={pizza}
-                        pizza={props.shoppingCart[pizza]}
+                        pizza={shoppingCart[pizza]}
                         value={pizza}
-                        deleteSpecificPizza={() =>props.deleteSpecificPizza(pizza)}
-                        incrOrDecrPizzAmount={props.incrOrDecrPizzAmount}
+                        deleteSpecificPizza={() => deleteSpecificPizza(pizza)}
+                        incrOrDecrPizzAmount={incrOrDecrPizzAmount}
                     />
                 ))
             }

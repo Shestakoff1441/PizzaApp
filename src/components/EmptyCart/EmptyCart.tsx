@@ -3,6 +3,7 @@ import EmptyCartImage from '../../images/EmptyCartImage.svg';
 import CustomButton from '../UI/CustomButton/CustomButton';
 
 import './EmptyCart.css';
+
 const EmptyCart = () => {
     return (
         <div className='cartpage__container'>
