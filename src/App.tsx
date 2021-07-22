@@ -11,11 +11,11 @@ import {
   Route,
 } from "react-router-dom";
 import { useEffect } from 'react';
- type Props = {
+type Props = {
   setShoppingCart: Function
- }
-const App = ({setShoppingCart}: Props) => {
-  useEffect(() =>{
+}
+const App = ({ setShoppingCart }: Props) => {
+  useEffect(() => {
     setShoppingCart(getLocalStorageData());
   }, [])
   // localStorage.clear();

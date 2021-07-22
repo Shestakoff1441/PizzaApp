@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import CircleMinus from '../../../images/CircleMinus.svg';
 import CirclePlus from '../../../images/CirclePlus.svg';
 

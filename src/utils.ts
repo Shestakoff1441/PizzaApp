@@ -8,8 +8,7 @@ export const getPriceAndAmount = (obj: any) => {
         sum['price'] = sum['price'] + obj[elem].price * obj[elem].amount;
         sum['amount'] = sum['amount'] + obj[elem].amount;
         return sum;
-    }, {
-    });
+    }, {});
 }
 
 export const getLocalStorageData = () => {
