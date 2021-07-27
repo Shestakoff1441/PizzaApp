@@ -4,7 +4,7 @@ import CustomButton from '../UI/CustomButton/CustomButton';
 
 import './EmptyCart.css';
 
-const EmptyCart = () => {
+const EmptyCart:React.FC = () => {
     return (
         <div className='cartpage__container'>
             <div className='cartpage__container__title'>

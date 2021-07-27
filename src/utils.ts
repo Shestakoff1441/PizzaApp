@@ -1,20 +1,29 @@
+import { IPizzaState } from './interfaces';
 
-export const getPriceAndAmount = (obj: any) => {
-    return Object.keys(obj).reduce((sum: { price?: any, amount?: any }, elem) => {
+interface localStorageProps  {
+    [key: string]: string
+}
+interface getPriceProps {
+    [key: string]: number
+}
+
+
+export const getPriceAndAmount = (obj: IPizzaState):getPriceProps => {
+    return Object.keys(obj).reduce((sum: getPriceProps, elem) => {
         if (!sum.hasOwnProperty('price') && !sum.hasOwnProperty('amount')) {
             sum['price'] = 0;
             sum['amount'] = 0;
         }
-        sum['price'] = sum['price'] + obj[elem].price * obj[elem].amount;
-        sum['amount'] = sum['amount'] + obj[elem].amount;
+        sum['price'] += obj[elem].price * obj[elem].amount;
+        sum['amount'] += obj[elem].amount;
         return sum;
     }, {});
 }
 
-export const getLocalStorageData = () => {
-    let storeObject: any = {};
-    Object.keys(localStorage).forEach((key: any) => storeObject[key] = JSON.parse(localStorage.getItem(key) || '{}'));
+export const getLocalStorageData = (): object => {
+    let storeObject: localStorageProps = {};
+    Object.keys(localStorage).forEach((key: string) => storeObject[key] = JSON.parse(localStorage.getItem(key) || ''));
     return storeObject;
 }
 
-export const setLocalStorageData = (key: string, value: any) => localStorage.setItem(key, JSON.stringify(value));
+export const setLocalStorageData = (key: string, value: object) => localStorage.setItem(key, JSON.stringify(value));

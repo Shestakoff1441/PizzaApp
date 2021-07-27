@@ -4,50 +4,54 @@ import PizzaParams from '../PizzaParams/PizzaParams';
 import PizzaPrice from '../PizzaPrice/PizzaPrice';
 import { setShoppingCart } from '../../redux/shoppingCart/actions';
 import { setLocalStorageData } from '../../utils';
+import { IPizzaProps, ITypeAndSize, State, IPizzaState } from '../../interfaces';
 
 import './Pizza.css';
 
-type Props = {
+interface IShoppingCart {
+    [key: string]: IPizzaProps
+}
+interface IProps {
     image: string,
     title: string,
-    typeAndSize: any,
-    price: Number,
-    setShoppingCart: Function
-    shoppingCart: any
+    typeAndSize: { type: ITypeAndSize, size: ITypeAndSize },
+    price: number,
+    setShoppingCart(arg0: IShoppingCart): void
+    shoppingCart: IPizzaState
 }
-const Pizza = ({ image, title, typeAndSize, price, shoppingCart, setShoppingCart }: Props) => {
-    const [currentPizzaData, setCurrentPizzaData] = useState({
+const Pizza: React.FC<IProps> = ({ image, title, typeAndSize, price, shoppingCart, setShoppingCart }) => {
+    const [currentPizzaData, setCurrentPizzaData] = useState<IPizzaProps>({
         image: image,
         title: title,
         price: price,
-        size: Object.keys(typeAndSize.size).find(el => typeAndSize.size[el] === true),
-        type: Object.keys(typeAndSize.type).find(el => typeAndSize.type[el] === true),
+        size: Object.keys(typeAndSize.size).find(el => typeAndSize.size[el]),
+        type: Object.keys(typeAndSize.type).find(el => typeAndSize.type[el]),
         amount: 0
     });
 
-    const setPizzaParamsHandler = (param: any, value: any) => {
+    const setPizzaParamsHandler = (prop: string, value: string) => {
         setCurrentPizzaData({
             ...currentPizzaData,
-            [param]: value
+            [prop]: value
         })
     };
-    const addToStore = (data: any) => {
+    const addToStore = (data: IPizzaProps) => {
         const storeKey = `${data.title} ${data.type} ${data.size}`;
-        if (storeKey in shoppingCart.shoppingCart) {
+        if (storeKey in shoppingCart) {
             setShoppingCart({
-                ...shoppingCart.shoppingCart,
+                ...shoppingCart,
                 [storeKey]: {
                     ...data,
-                    amount: shoppingCart.shoppingCart[storeKey].amount + 1
+                    amount: shoppingCart[storeKey].amount + 1
                 }
             });
             setLocalStorageData(storeKey, {
                 ...data,
-                amount: shoppingCart.shoppingCart[storeKey].amount + 1
+                amount: shoppingCart[storeKey].amount + 1
             })
         } else {
             setShoppingCart({
-                ...shoppingCart.shoppingCart,
+                ...shoppingCart,
                 [storeKey]: {
                     ...data,
                     amount: 1
@@ -73,11 +77,11 @@ const Pizza = ({ image, title, typeAndSize, price, shoppingCart, setShoppingCart
     )
 }
 
-const mapStateToProps = (state: any) => ({
-    shoppingCart: state.shoppingReducer
+const mapStateToProps = ({ shoppingReducer }: State) => ({
+    shoppingCart: shoppingReducer.shoppingCart
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-    setShoppingCart: (data: any) => dispatch(setShoppingCart(data))
+    setShoppingCart: (data: object) => dispatch(setShoppingCart(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Pizza);

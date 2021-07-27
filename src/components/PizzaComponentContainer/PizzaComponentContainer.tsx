@@ -8,6 +8,25 @@ import AsianShrimps from '../../images/AsianShrimps.svg';
 
 import './PizzaComponentContainer.css';
 
+interface IPizzaData {
+    title: string,
+    image: string,
+    consist: string[],
+    typeAndSize: {
+        type: {
+            [key: string]: boolean
+        },
+        size: {
+            [key: string]: boolean
+        }
+    },
+    price: number
+}
+interface IPizzaCurrent {
+    [key:string]: any
+}
+
+
 const pizzaData = [
     {
         title: 'Чизбургер-пицца',
@@ -61,13 +80,14 @@ const sortButtons = [
 ];
 
 
-const PizzaComponent = () => {
-    const [pizzaContentData, setPizzaContentData] = useState(pizzaData);
+
+const PizzaComponent: React.FC = () => {
+    const [pizzaContentData, setPizzaContentData] = useState<IPizzaData[]>(pizzaData);
     const [currentPizzaType, setCurrentPizzaType] = useState(sortButtons[0][0]);
 
-    const sortedData = (type: string  ) => {
-        const clonedData = [...pizzaContentData];
-        const sortedItems = clonedData.sort((a: any, b: any) => {
+    const sortedData = (type: string) => {
+        let clonedData = [...pizzaContentData];
+        clonedData = clonedData.sort((a: IPizzaCurrent, b: IPizzaCurrent) => {
             if (a[type] < b[type]) {
                 return -1;
             }
@@ -76,17 +96,17 @@ const PizzaComponent = () => {
             }
             return 0;
         })
-        setPizzaContentData(sortedItems);
+        setPizzaContentData(clonedData);
     };
 
-    const filteredData = (type: any) => {
-        const clonedData = [...pizzaData];
+    const filteredData = (type: string) => {
+        let clonedData = [...pizzaData];
         if (!type) {
             setPizzaContentData(clonedData);
             return
         }
-        const filteredItems = clonedData.filter(el => el.consist.some(element => element === type));
-        setPizzaContentData(filteredItems);
+        clonedData = clonedData.filter((el: IPizzaData) => el.consist.some(element => element === type));
+        setPizzaContentData(clonedData);
     };
 
     return (

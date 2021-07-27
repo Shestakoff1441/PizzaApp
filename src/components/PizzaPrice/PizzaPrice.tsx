@@ -4,11 +4,11 @@ import AddButton from '../UI/AddButton/AddButton';
 import './PizzaPrice.css';
 
 
-type Props = {
-    price: Number,
+interface IProps  {
+    price: number,
     addPizzaHandler: MouseEventHandler
 }
-const PizzaPrice = ({ price, addPizzaHandler }: Props) => {
+const PizzaPrice = ({ price, addPizzaHandler }: IProps) => {
     return (
         <div className='pizzaPrice__container'>
             <div className='pizzaPrice__price'>от {price} ₽</div>

@@ -30,7 +30,7 @@ describe('Getting correct data', () => {
             },
         }
     });
-    test('Getting sum of pizza and total price', () => {
+    test('Getting pizza amount and total price', () => {
         expect(getPriceAndAmount(items)).toEqual({
             price: 600,
             amount: 6

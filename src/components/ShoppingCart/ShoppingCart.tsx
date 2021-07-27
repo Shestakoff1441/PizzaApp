@@ -3,27 +3,33 @@ import ShoppingCartTop from '../ShoppingCartTop/ShoppingCartTop';
 import CartLineComponent from '../CartLineComponent/CartLineComponent';
 import ShoppingCartBottom from '../ShoppingCartBottom/ShoppingCartBottom';
 import { getPriceAndAmount } from '../../utils';
+import { IPizzaState } from '../../interfaces';
 
 import './ShoppingCart.css';
 
-type Props = {
-    shoppingCart: any,
-    cleanShoppingCart: Function,
-    deleteSpecificPizza: Function,
-    incrOrDecrPizzAmount: Function
+
+interface IProps {
+    shoppingCart: IPizzaState,
+    cleanShoppingCart(key: object): void,
+    deleteSpecificPizza(key: string): void,
+    incrOrDecrPizzAmount(obj: object): void
 }
-const ShoppingCart = ({ 
-    shoppingCart, 
-    cleanShoppingCart, 
-    deleteSpecificPizza, 
-    incrOrDecrPizzAmount 
-}: Props) => {
-    let sumOfElements = getPriceAndAmount(shoppingCart);
+interface IGetPriceAndAmount {
+    price?: number,
+    amount?: number
+}
+const ShoppingCart: React.FC<IProps> = ({
+    shoppingCart,
+    cleanShoppingCart,
+    deleteSpecificPizza,
+    incrOrDecrPizzAmount
+}) => {
+    let sumOfElements: IGetPriceAndAmount = getPriceAndAmount(shoppingCart);
     return (
         <div className='shoppingCart__container'>
             <ShoppingCartTop cleanShoppingCart={cleanShoppingCart} />
             {
-                Object.keys(shoppingCart).map(pizza => (
+                Object.keys(shoppingCart).map((pizza: string) => (
                     <CartLineComponent
                         key={pizza}
                         pizza={shoppingCart[pizza]}

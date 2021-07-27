@@ -1,10 +1,10 @@
 import React from 'react';
 import './Wrapper.css';
 
-type Props = {
+interface IProps  {
     children: JSX.Element
 }
-const Wrapper = ({ children }: Props) => (
+const Wrapper:React.FC<IProps> = ({ children }) => (
     <div className='content-container'>
         {children}
     </div>

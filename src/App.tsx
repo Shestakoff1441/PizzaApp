@@ -1,3 +1,4 @@
+import React, { useEffect, useCallback } from 'react';
 import Header from './components/Header/Header';
 import { connect } from 'react-redux';
 import Wrapper from './components/Wrapper/Wrapper';
@@ -10,15 +11,20 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { useEffect } from 'react';
-type Props = {
+interface IProps {
   setShoppingCart: Function
 }
-const App = ({ setShoppingCart }: Props) => {
-  useEffect(() => {
+const App: React.FC<IProps> = ({ setShoppingCart }) => {
+
+  const setInitDataStore = useCallback(() => {
     setShoppingCart(getLocalStorageData());
-  }, [])
-  // localStorage.clear();
+  }, [setShoppingCart]);
+
+  useEffect(() => {
+    setInitDataStore()
+  }, [setInitDataStore]);
+
+
   return (
     <>
       <Router>
@@ -42,10 +48,7 @@ const App = ({ setShoppingCart }: Props) => {
   );
 }
 
-// const mapStateToProps = state => ({
-//   shoppingCart: state.shoppingReducer
-// });
 const mapDispatchToProps = (dispatch: Function) => ({
-  setShoppingCart: (data: any) => dispatch(setShoppingCart(data))
+  setShoppingCart: (data: object) => dispatch(setShoppingCart(data))
 })
 export default connect(null, mapDispatchToProps)(App);

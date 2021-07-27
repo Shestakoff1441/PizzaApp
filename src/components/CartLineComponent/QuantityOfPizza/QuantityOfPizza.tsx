@@ -1,26 +1,28 @@
 import React from 'react';
 import CircleMinus from '../../../images/CircleMinus.svg';
 import CirclePlus from '../../../images/CirclePlus.svg';
-
+import { IPizzaProps, IIncrOrDecr } from '../../../interfaces';
 import './QuantityOfPizza.css';
 
-type Props = {
-    amount: Number,
-    value: String,
-    incrOrDecrPizzAmount: Function
+
+interface IProps {
+    value: string,
+    pizza: IPizzaProps
+    incrOrDecrPizzAmount(obj: IIncrOrDecr): void
 }
 
-const QuantityOfPizza = ({ amount, value, incrOrDecrPizzAmount }: Props) => {
+const QuantityOfPizza: React.FC<IProps> = ({ pizza, value, incrOrDecrPizzAmount }) => {
     return (
         <div className='quantityOfPizza__container'>
             <button
-                disabled={amount === 1}
-                className={`quantityOfPizza__icon ${amount === 1 && 'disableBtn'}`}
-                onClick={() => incrOrDecrPizzAmount({ type: 'decrease', key: value })}
+                disabled={pizza.amount === 1}
+                className={`quantityOfPizza__icon ${pizza.amount === 1 && 'disableBtn'}`}
+                onClick={() =>
+                    incrOrDecrPizzAmount({ type: 'decrease', key: value })}
             >
                 <img src={CircleMinus} alt='' />
             </button>
-            <div className='quantityOfPizza__text'>{amount}</div>
+            <div className='quantityOfPizza__text'>{pizza.amount}</div>
             <button className='quantityOfPizza__icon' onClick={() => incrOrDecrPizzAmount({ type: 'increase', key: value })} >
                 <img src={CirclePlus} alt='' />
             </button>

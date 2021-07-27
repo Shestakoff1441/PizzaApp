@@ -1,22 +1,16 @@
 import React from 'react';
-
+import { IPizzaProps } from '../../../interfaces';
 import './DescriptionOfPizza.css';
 
-type Props = {
-    image: string,
-    title: String,
-    type: String,
-    size: Number
-}
-const DescriptionOfPizza = ({ image, title, size, type }: Props) => (
+const DescriptionOfPizza: React.FC<IPizzaProps> = (props) => (
     <div className='descriptionOfPizza__container'>
-        <img className='descriptionOfPizza__image' src={image} alt='' />
+        <img className='descriptionOfPizza__image' src={props.image} alt='' />
         <div className='descriptionOfPizza__titleBlock'>
             <div className='descriptionOfPizza__title'>
-                {title}
+                {props.title}
             </div>
             <div className='descriptionOfPizza__subTitle'>
-                {type} тесто, {size} см.
+                {props.type} тесто, {props.size} см.
             </div>
         </div>
     </div>

@@ -1,14 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
 import './PizzaParams.css';
+import { IPizzaProps, ITypeAndSize } from '../../interfaces';
 
 
-type Props = {
-    typeAndSize: any,
-    setPizzaParams: Function,
-    currentPizzaData: any
+interface IProps {
+    typeAndSize: { type: ITypeAndSize, size: ITypeAndSize },
+    setPizzaParams(param:string, value:string): void,
+    currentPizzaData: IPizzaProps
 }
-const PizzaParams = ({ typeAndSize, setPizzaParams, currentPizzaData }: Props) => {
+const PizzaParams: React.FC<IProps> = ({ typeAndSize, setPizzaParams, currentPizzaData }) => {
     return (
         <div className='pizzaParams__container'>
             <div className='pizzaParams__typeBlock'>

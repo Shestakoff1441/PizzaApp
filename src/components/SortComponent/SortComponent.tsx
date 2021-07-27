@@ -4,31 +4,34 @@ import SortSelect from '../UI/SortSelect/SortSelect';
 import './SortComponent.css';
 
 
-type Props = {
-    sortButtons: any[],
-    currentPizzaType: any,
-    filteredData: Function,
-    setCurrentPizzaType: Function,
-    sortHandler: Function
+interface IProps  {
+    sortButtons: string[][],
+    currentPizzaType: string,
+    filteredData(key: string): void,
+    setCurrentPizzaType(key: string): void,
+    sortHandler(key: string): void,
 }
-const SortComponent = ({
+const SortComponent:React.FC<IProps> = ({
     sortButtons,
     currentPizzaType,
     filteredData,
     setCurrentPizzaType,
     sortHandler
-}: Props) => {
+}) => {
     return (
         <div className='sortComponentContainer'>
             <div className='sortComponentContainer__buttonsSort'>
                 {
-                    sortButtons.map((button: any) => <SortButton styles={{
+                    sortButtons.map((button: string[]) => <SortButton styles={{
                         background: currentPizzaType === button[0] ? '#000' : '#F9F9F9',
                         color: currentPizzaType === button[0] ? '#fff' : '#000',
                     }} filteredData={() => {
                         filteredData(button[1]);
                         setCurrentPizzaType(button[0])
-                    }} key={button} title={button[0]} />)
+                    }} 
+                        key={button[1]} 
+                        title={button[0]} 
+                    />)
                 }
             </div>
             <div className='sortComponentContainer__selectSort'>

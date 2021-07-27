@@ -4,7 +4,11 @@ import TrashBin from '../../images/TrashBin.svg';
 
 import './ShoppingCartTop.css';
 
-const ShoppingCartTop = ({ cleanShoppingCart }: any) => {
+interface IProps {
+    cleanShoppingCart(key: object): void
+}
+
+const ShoppingCartTop = ({ cleanShoppingCart }: IProps) => {
     return (
         <div className='shoppingCart__topOfCart'>
             <div className='shoppingCart__leftOfCart'>

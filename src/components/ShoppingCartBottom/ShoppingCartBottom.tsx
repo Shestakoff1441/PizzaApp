@@ -4,7 +4,15 @@ import LeftArrow from '../../images/LeftArrow.svg';
 
 import './ShoppingCartBottom.css';
 
-const ShoppingCartBottom = ({sumOfElements} : any) => {
+interface IGetPriceAndAmount {
+    price?: number,
+    amount?: number
+}
+interface IProps {
+    sumOfElements:IGetPriceAndAmount
+
+}
+const ShoppingCartBottom: React.FC<IProps> = ({ sumOfElements }) => {
     return (
         <div className='shoppingCartBottom__container'>
             <div className='shoppingCartBottom__amountBlock'>

@@ -4,11 +4,11 @@ import PlusIcon from '../../../images/PlusIcon.svg';
 
 import './AddButton.css';
 
-type Props = {
+interface IProps  {
     addPizzaHandler: MouseEventHandler,
 }
 
-const AddButton = ({ addPizzaHandler }: Props) => {
+const AddButton:React.FC<IProps> = ({ addPizzaHandler }) => {
     return (
         <button className='pizzaPrice__addButton' onClick={addPizzaHandler}>
             <img src={PlusIcon} alt='' />

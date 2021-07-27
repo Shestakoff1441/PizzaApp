@@ -1,12 +1,12 @@
 import React, { MouseEventHandler } from 'react';
 import './SortButton.css';
 
-type Props = {
+interface IProps  {
     filteredData: MouseEventHandler
-    styles: any,
+    styles: object,
     title: string
 }
-const SortButton = ({ filteredData, styles, title }: Props) => {
+const SortButton: React.FC<IProps> = ({ filteredData, styles, title }) => {
     return (
         <button onClick={filteredData} style={styles} className='sortButton'>
             {title}

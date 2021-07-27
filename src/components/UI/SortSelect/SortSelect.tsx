@@ -4,11 +4,11 @@ import UpArrow from '../../../images/UpArrow.svg';
 import './SortSelect.css';
 const sortSelectItems = [['popular', 'популярности'], ['price', 'по цене'], ['title', 'по алфавиту']];
 
-type Props = {
-    sortHandler: Function
+interface IProps {
+    sortHandler(key:string): void
 }
 
-const SortSelect = ({ sortHandler }: Props) => {
+const SortSelect:React.FC<IProps> = ({ sortHandler }) => {
     const [sortType, setSortType] = useState(sortSelectItems[0][1]);
     const [isVisibleMenu, setIsVisibleMenu] = useState(false);
 

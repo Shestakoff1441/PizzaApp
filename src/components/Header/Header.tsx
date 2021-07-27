@@ -4,15 +4,16 @@ import { connect } from 'react-redux';
 import Cart from '../../images/Cart.svg';
 import { Link } from 'react-router-dom';
 import { getPriceAndAmount } from '../../utils';
+import { State, IPizzaState } from '../../interfaces';
 import './Header.css';
 
-type Props = {
-    shoppingCart: any
+
+interface IProps {
+    shoppingCart: IPizzaState,
 }
 
-
-const Header = ({ shoppingCart }: Props) => {
-    let sumOfElements = getPriceAndAmount(shoppingCart.shoppingCart);
+const Header: React.FC<IProps> = ({ shoppingCart }) => {
+    let sumOfElements = getPriceAndAmount(shoppingCart);
     return (
         <div className='headerContainer'>
             <div className='headerContainer__logoAndTitle'>
@@ -37,7 +38,7 @@ const Header = ({ shoppingCart }: Props) => {
     )
 }
 
-const mapStateToProps = (state: any) => ({
-    shoppingCart: state.shoppingReducer
+const mapStateToProps = ({ shoppingReducer }: State) => ({
+    shoppingCart: shoppingReducer.shoppingCart
 });
 export default connect(mapStateToProps)(Header);

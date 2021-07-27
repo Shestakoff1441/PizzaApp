@@ -6,17 +6,34 @@ import { cleanShoppingCart } from '../../redux/shoppingCart/actions';
 import { deleteSpecificPizza } from '../../redux/shoppingCart/actions';
 import { incrOrDecrPizzAmount } from '../../redux/shoppingCart/actions';
 import { setLocalStorageData } from '../../utils';
+import { IAddPizza, State } from '../../interfaces';
 import './CartPage.css';
 
+interface IShoppingCart {
+    shoppingCart: {
+        [key: string]: {
+            price: number,
+            amount: number,
+            image: string,
+            size: string,
+            type: string,
+            title: string
+        }
+    }
 
-type Props = {
-    shoppingCart: any,
-    incrOrDecrPizzAmount: Function,
-    cleanShoppingCart: Function,
-    deleteSpecificPizza: Function
 }
-const CartPage = ({ shoppingCart, incrOrDecrPizzAmount, cleanShoppingCart, deleteSpecificPizza }: Props) => {
-    const incrOrDecrPizz = (payload: any) => {
+interface IProps {
+    shoppingCart: IShoppingCart,
+    incrOrDecrPizzAmount(obj: IAddPizza): object,
+    cleanShoppingCart(obj: object): object,
+    deleteSpecificPizza(key: string): object
+}
+interface IPayload {
+    key: string,
+    type: string
+}
+const CartPage: React.FC<IProps> = ({ shoppingCart, incrOrDecrPizzAmount, cleanShoppingCart, deleteSpecificPizza }) => {
+    const incrOrDecrPizz = (payload: IPayload) => {
         const clonedShoppingCart = { ...shoppingCart.shoppingCart };
         if (payload.type === 'increase') {
             clonedShoppingCart[payload.key].amount++;
@@ -31,7 +48,7 @@ const CartPage = ({ shoppingCart, incrOrDecrPizzAmount, cleanShoppingCart, delet
     }
 
     const clearStorage = () => {
-        cleanShoppingCart();
+        cleanShoppingCart({});
         localStorage.clear();
     }
 
@@ -52,13 +69,13 @@ const CartPage = ({ shoppingCart, incrOrDecrPizzAmount, cleanShoppingCart, delet
     )
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: State) => ({
     shoppingCart: state.shoppingReducer
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-    cleanShoppingCart: (data: any) => dispatch(cleanShoppingCart(data)),
-    deleteSpecificPizza: (data: any) => dispatch(deleteSpecificPizza(data)),
-    incrOrDecrPizzAmount: (data: any) => dispatch(incrOrDecrPizzAmount(data)),
+    cleanShoppingCart: (data: object) => dispatch(cleanShoppingCart(data)),
+    deleteSpecificPizza: (data: string) => dispatch(deleteSpecificPizza(data)),
+    incrOrDecrPizzAmount: (data: object) => dispatch(incrOrDecrPizzAmount(data)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

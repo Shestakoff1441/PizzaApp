@@ -2,25 +2,26 @@ import React, { MouseEventHandler } from 'react';
 import DescriptionOfPizza from './DescriptionOfPizza/DescriptionOfPizza';
 import QuantityOfPizza from './QuantityOfPizza/QuantityOfPizza';
 import DeleteIcon from '../../images/DeleteIcon.svg';
+import { IPizzaProps, IIncrOrDecr } from '../../interfaces';
 
 import './CartLineComponent.css';
 
 
-type Props = {
-    pizza: any
-    value: String,
-    incrOrDecrPizzAmount: Function,
+interface IProps {
+    pizza: IPizzaProps,
+    value: string,
+    incrOrDecrPizzAmount(obj: IIncrOrDecr): void,
     deleteSpecificPizza: MouseEventHandler
 }
 
-const CartLineComponent = ({ pizza, value, incrOrDecrPizzAmount, deleteSpecificPizza }: Props) => {
+const CartLineComponent: React.FC<IProps> = ({ pizza, value, incrOrDecrPizzAmount, deleteSpecificPizza }) => {
     return (
         <div className='cartLineComponent__container'>
             <DescriptionOfPizza {...pizza} />
             <div className='cartLineComponent__activeBlock'>
-                <QuantityOfPizza value={value} {...pizza} incrOrDecrPizzAmount={incrOrDecrPizzAmount} />
+                <QuantityOfPizza value={value} pizza={pizza} incrOrDecrPizzAmount={incrOrDecrPizzAmount} />
                 <div className='cartLineComponent__totalPrice'>
-                    {pizza.price * pizza.amount}  ₽
+                    {pizza.price! * pizza.amount!}  ₽
                 </div>
                 <img onClick={deleteSpecificPizza} className='cartLineComponent__deleteIcon' src={DeleteIcon} alt='' />
             </div>

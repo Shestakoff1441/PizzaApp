@@ -1,4 +1,12 @@
-export const stateUpdater = (oldState: any, newState: any) => ({
-    ...oldState,
-    ...newState
-})
+interface IStateUpdater {
+    shoppingCart:{
+        [key:string]: object
+    }
+}
+
+export const stateUpdater = (oldState: IStateUpdater, newState: IStateUpdater) => {
+    return {
+        ...oldState,
+        ...newState
+    }
+}

@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 import './CustomButton.css';
 
-type Props = {
+interface IProps {
     href?: string | Location,
-    styles?: any,
+    styles?: object,
     image?: string,
-    title: String
+    title: string
 }
 
-const CustomButton = ({ href, styles, image, title }: Props) => {
+const CustomButton: React.FC<IProps> = ({ href, styles, image, title }) => {
     return (
         <Link className='customButton'
             to={href || '/'}
